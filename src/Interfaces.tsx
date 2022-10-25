@@ -6,4 +6,5 @@ export interface Hobby {
   link: string
   key: string
   accessibility: number
+  nums: number
 }

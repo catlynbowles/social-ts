@@ -1,17 +1,6 @@
 import { Hobby } from "./Interfaces"
 
-type ActivityProps = {
-  activity: string
-  type: string
-  participants: number
-  price: number
-  link: string
-  key: string
-  accessibility: number
-  nums: number
-}
-
-const Activity: React.FC <ActivityProps> = ({activity, type, price, participants, nums}: ActivityProps) => {
+const Activity: React.FC <Hobby> = ({activity, type, price, participants, nums}: Hobby) => {
   return (
     <div>
       <h1>{activity}</h1>
