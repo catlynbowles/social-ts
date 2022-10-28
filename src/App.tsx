@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
+import { fetchActivity } from './apiCalls';
 import './App.css';
+import Todo from './Todo';
 
-function App() {
+const App: React.FC = () => {
+  const [doIt, setActivity] = useState({
+    accessibility: 0,
+    activity: '',
+    type: '',
+    participants: 0,
+    price: 0,
+    link: '',
+    key: '',
+  })
+  const [num, setNum] = useState(0)
+
+  useEffect(() => {
+    fetchActivity()
+      .then(data => setActivity(data))
+  }, [num])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Todo nums={num} {...doIt} />
+      <button onClick={() => setNum(num + 1)}>Choose another Random Activity</button>
     </div>
   );
 }
